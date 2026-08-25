@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ẩm thực — D-Blog</title>
+  <meta name="description" content="Khám phá thế giới ẩm thực, công thức nấu ăn ngon và review địa điểm ăn uống.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body>
+
+  <site-header root-path="../"></site-header>
+
+  <main>
+    <div class="category-header">
+      <h1 class="category-header__title">Ẩm thực</h1>
+      <p class="category-header__desc">Khám phá công thức nấu ăn, món ngon mỗi ngày và văn hóa ẩm thực bốn phương.</p>
+    </div>
+
+    <section style="padding: 0 0 var(--sp-8);">
+      <div class="container">
+        <post-grid root-path="../" category="am-thuc"></post-grid>
+      </div>
+    </section>
+  </main>
+
+  <site-footer root-path="../"></site-footer>
+
+  <script src="../assets/js/posts.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

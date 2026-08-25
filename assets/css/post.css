@@ -1,0 +1,184 @@
+/* ============================================
+   POST — Style cho nội dung bài viết (long-form)
+   Chỉ áp dụng bên trong .post-body
+   KHÔNG chỉnh sửa file này khi thêm bài viết.
+   ============================================ */
+
+.post-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--container-pad) var(--sp-8);
+}
+
+/* Paragraphs */
+.post-body p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--sp-5);
+}
+
+/* Headings */
+.post-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-top: var(--sp-7);
+  margin-bottom: var(--sp-4);
+}
+
+.post-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-top: var(--sp-6);
+  margin-bottom: var(--sp-3);
+}
+
+/* Links */
+.post-body a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: color 0.2s ease;
+}
+
+.post-body a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Lists */
+.post-body ul,
+.post-body ol {
+  margin-bottom: var(--sp-5);
+  padding-left: var(--sp-5);
+  color: var(--color-ink-soft);
+}
+
+.post-body ul {
+  list-style-type: disc;
+}
+
+.post-body ol {
+  list-style-type: decimal;
+}
+
+.post-body li {
+  margin-bottom: var(--sp-2);
+  line-height: var(--lh-body);
+}
+
+.post-body li::marker {
+  color: var(--color-primary);
+}
+
+/* Blockquote */
+.post-body blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-5) 0;
+  background-color: var(--color-bg-alt);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.post-body blockquote p {
+  font-style: italic;
+  color: var(--color-ink);
+  margin-bottom: 0;
+}
+
+/* Images */
+.post-body img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin: var(--sp-5) 0;
+}
+
+.post-body figure {
+  margin: var(--sp-6) 0;
+}
+
+.post-body figcaption {
+  text-align: center;
+  font-family: var(--font-utility);
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+  margin-top: var(--sp-2);
+}
+
+/* Code — inline */
+.post-body code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9em;
+  background-color: var(--color-bg-alt);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--color-primary);
+}
+
+/* Code — block */
+.post-body pre {
+  margin: var(--sp-5) 0;
+  background-color: var(--color-ink);
+  color: #f1f1f1;
+  padding: var(--sp-5);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.post-body pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Horizontal rule */
+.post-body hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--sp-7) 0;
+}
+
+/* Strong & Em */
+.post-body strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.post-body em {
+  font-style: italic;
+}
+
+/* Table */
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--sp-5) 0;
+  font-size: 15px;
+}
+
+.post-body th,
+.post-body td {
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-body th {
+  font-family: var(--font-utility);
+  font-weight: 600;
+  color: var(--color-ink);
+  background-color: var(--color-bg-alt);
+}
+
+.post-body td {
+  color: var(--color-ink-soft);
+}
