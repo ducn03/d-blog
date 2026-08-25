@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cache là gì? Hiểu từ cơ bản đến nâng cao để tối ưu hệ thống — D-Insights</title>
+  <meta name="description" content="Cache là nơi lưu trữ tạm thời dữ liệu nhằm giúp hệ thống phản hồi nhanh hơn, giảm tải database và tăng hiệu năng ứng dụng.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/post.css">
+</head>
+<body>
+
+  <site-header root-path="../"></site-header>
+
+  <section class="hero container">
+    <div class="hero__pill">
+      <a href="../category/cong-nghe.html" class="pill pill--cong-nghe">Công nghệ</a>
+    </div>
+    <h1 class="hero__title">Cache là gì? Hiểu từ cơ bản đến nâng cao để tối ưu hệ thống</h1>
+    <div class="hero__meta">
+      <span>Đức Nguyễn</span>
+      <span class="hero__meta-dot"></span>
+      <span>26 Tháng 8, 2026</span>
+      <span class="hero__meta-dot"></span>
+      <span>8 phút đọc</span>
+    </div>
+    <!-- <div class="hero__cover">
+      <img src="../assets/img/posts/cache-cover.svg" alt="Cache là gì?">
+    </div> -->
+  </section>
+
+  <article class="post-body">
+    <!-- POST_BODY_START -->
+
+    <p>Cache là một trong những khái niệm cốt lõi của hệ thống hiện đại. Khi bạn nghe tới "tăng tốc", "giảm tải database", "response nhanh hơn" thì rất có thể cache đóng vai trò trung tâm. Nhưng cache không chỉ là "lưu tạm một cái gì đó"; nó là một kỹ thuật thiết kế có mục đích rõ ràng: giảm chi phí truy xuất và tính toán lặp đi lặp lại.</p>
+
+    <h2>1. Cache là gì?</h2>
+    <p>Hãy tưởng tượng bạn đang tra một định nghĩa trong sách. Lần đầu tiên bạn phải mở sách, tìm đúng trang, đọc xong rồi mới nhớ. Nếu bạn cần xem lại cùng một định nghĩa lần nữa, bạn sẽ không muốn lật sách lại từ đầu. Bạn sẽ nhớ và dùng ngay.</p>
+    <p>Trong phần mềm, cache hoạt động tương tự: thay vì phải tính toán lại, gọi database lại, hoặc fetch API lại từ đầu, hệ thống lưu một bản sao tạm thời ở nơi nhanh hơn để dùng lại.</p>
+    <p>Về cơ bản, cache là khoảng không gian lưu trữ tạm thời để giảm thời gian xử lý và chi phí truy cập. Nơi lưu này thường là RAM, vì RAM nhanh hơn nhiều so với disk hay database truyền thống.</p>
+
+    <h2>2. Vấn đề cache giải quyết</h2>
+    <p>Hệ thống không có cache thường hoạt động như sau:</p>
+    <ul>
+      <li>User gửi request</li>
+      <li>Server nhận request</li>
+      <li>Gọi database</li>
+      <li>Database đọc từ disk</li>
+      <li>Trả dữ liệu về</li>
+    </ul>
+    <p>Với một lượng request nhỏ, điều này vẫn ổn. Nhưng khi hệ thống có hàng nghìn hoặc hàng triệu request mỗi ngày, chi phí này tăng vọt. Database sẽ bị quá tải, thời gian phản hồi chậm đi, và trải nghiệm người dùng suy giảm.</p>
+    <p>Cache giúp cắt bớt vòng lặp này. Nếu dữ liệu đã có sẵn trong cache, server không cần tiếp tục gọi database nữa mà trả về ngay lập tức.</p>
+
+    <h2>3. Cache hoạt động như thế nào?</h2>
+    <p>Phần lớn cache hoạt động theo luồng đơn giản:</p>
+    <ol>
+      <li>Request đến server</li>
+      <li>Server kiểm tra cache</li>
+      <li>Nếu có dữ liệu, trả về ngay</li>
+      <li>Nếu không, gọi database hoặc API</li>
+      <li>Lưu kết quả vào cache</li>
+      <li>Trả dữ liệu cho client</li>
+    </ol>
+    <p>Quá trình này tạo thành 2 trạng thái chính:</p>
+    <ul>
+      <li><strong>Cache hit:</strong> dữ liệu tồn tại trong cache, trả ngay</li>
+      <li><strong>Cache miss:</strong> dữ liệu không tồn tại, cần đi lấy từ nguồn gốc</li>
+    </ul>
+    <p>Đây là lý do tại sao người ta nói: mục tiêu của cache là tối đa hóa <strong>hit rate</strong> - tỷ lệ request trúng cache.</p>
+
+    <h2>4. Tại sao RAM lại nhanh hơn disk?</h2>
+    <p>Cache thường được lưu trong RAM vì RAM có chi phí truy xuất cực thấp so với disk. Tốc độ đọc từ RAM gần như ngay lập tức, trong khi đọc từ SSD hoặc HDD chậm hơn hàng trăm đến hàng ngàn lần.</p>
+    <p>Điều này khiến cache rất hiệu quả với những dữ liệu được truy cập liên tục: thông tin cấu hình, danh sách sản phẩm, kết quả query lặp lại, session user, dữ liệu API phổ biến, ...</p>
+
+    <h2>5. Cache có lợi ích gì?</h2>
+    <p>Cache không phải là phép thuật, nhưng nó mang lại rất nhiều giá trị:</p>
+    <ul>
+      <li><strong>Tăng tốc phản hồi:</strong> dữ liệu có thể được trả về trong vài milisecond</li>
+      <li><strong>Giảm tải database:</strong> ít query hơn, ít tài nguyên hơn</li>
+      <li><strong>Giảm chi phí máy chủ:</strong> cần ít CPU và I/O hơn</li>
+      <li><strong>Ổn định hệ thống:</strong> tránh được pike khi traffic tăng</li>
+      <li><strong>Trải nghiệm người dùng tốt hơn:</strong> trang load nhanh, app mượt hơn</li>
+    </ul>
+    <p>Nói ngắn gọn: cache giúp hệ thống "nhớ lại" những gì đã làm trước đó.</p>
+
+    <h2>6. Bản chất của cache: trade-off</h2>
+    <p>Cache không hề miễn phí. Để có tốc độ nhanh, hệ thống phải bỏ ra RAM, độ phức tạp hơn, và phải chấp nhận dữ liệu có thể hơi cũ trong thời gian ngắn.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Bỏ ra</th>
+          <th>Đổi lấy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RAM</td>
+          <td>Tốc độ cực nhanh</td>
+        </tr>
+        <tr>
+          <td>Độ phức tạp hệ thống</td>
+          <td>Hiệu năng cao hơn</td>
+        </tr>
+        <tr>
+          <td>Tính nhất quán tuyệt đối</td>
+          <td>Khả năng phục vụ nhiều user hơn</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Về mặt kiến trúc, cache là sự đánh đổi có chủ đích: một phần tài nguyên được dùng để đổi lấy tốc độ và khả năng scale.</p>
+
+    <h2>7. Cache hoạt động vì đâu? — Locality</h2>
+    <p>Cache khai thác một đặc điểm rất tự nhiên của hệ thống: dữ liệu thường được truy cập theo mô hình lặp lại.</p>
+
+    <h3>Temporal Locality</h3>
+    <p>Dữ liệu vừa được truy cập sẽ có khả năng cao được truy cập lại trong thời gian ngắn. Ví dụ: một product detail đang được xem thì rất có thể được load lại trong vài giây nữa.</p>
+
+    <h3>Spatial Locality</h3>
+    <p>Dữ liệu nằm gần nhau có xu hướng được truy cập cùng lúc. Điều này là lý do nhiều hệ thống cache theo block hoặc page thay vì từng byte.</p>
+
+    <p>Nếu dữ liệu hoàn toàn ngẫu nhiên và không có mô hình truy cập, cache sẽ gần như vô dụng.</p>
+
+    <h2>8. Các khái niệm cốt lõi</h2>
+
+    <h3>8.1 TTL (Time To Live)</h3>
+    <p>TTL là thời gian sống của một entry trong cache. Sau khi hết TTL, entry sẽ bị xóa hoặc cần được refresh.</p>
+    <p>Ví dụ: cache danh sách tin tức 5 phút. Trong vòng 5 phút, app nhìn thấy dữ liệu cũ nhưng rất nhanh; sau đó, hệ thống sẽ refresh lại.</p>
+    <p>TTL quan trọng vì nó giúp giới hạn stale data và ngăn cache bị lưu dữ liệu quá cũ.</p>
+
+    <h3>8.2 Eviction Policy</h3>
+    <p>Khi cache đầy, hệ thống phải quyết định xóa entry nào. Ba chiến lược phổ biến nhất là:</p>
+    <ul>
+      <li><strong>LRU:</strong> xóa entry lâu nhất chưa được dùng</li>
+      <li><strong>LFU:</strong> xóa entry ít được truy cập nhất</li>
+      <li><strong>FIFO:</strong> xóa entry được add vào trước</li>
+    </ul>
+    <p>Trong thực tế, LRU là lựa chọn phổ biến nhất vì nó phù hợp với hầu hết các hệ thống web hiện đại.</p>
+
+    <h3>8.3 Cache Invalidation</h3>
+    <p>Đây là phần khó nhất: khi dữ liệu gốc thay đổi, cache phải được xóa hoặc cập nhật. Nếu không, người dùng sẽ nhìn thấy dữ liệu cũ dù database đã cập nhật.</p>
+    <p>Ví dụ, bạn cache thông tin user, sau đó đổi tên trong DB nhưng cache chưa clear — app vẫn trả về tên cũ. Đây là tình huống stale data rất phổ biến.</p>
+
+    <figure>
+      <img src="../assets/img/posts/cache-cover.svg" alt="Hình minh họa cache" />
+    </figure>
+
+    <h2>9. Các pattern cache phổ biến</h2>
+
+    <h3>9.1 Cache Aside</h3>
+    <p>Đây là pattern phổ biến nhất. App kiểm tra cache trước; nếu cache miss, app gọi database, lưu kết quả vào cache rồi trả về client.</p>
+    <p>Ưu điểm: dễ triển khai, linh hoạt, phù hợp với nhiều hệ thống. Nhược điểm: khi miss, app phải làm thêm một vòng gọi DB và cache store.</p>
+
+    <h3>9.2 Read Through</h3>
+    <p>App chỉ tương tác với cache; nếu cache miss, cache layer tự biết cách load dữ liệu từ DB và lưu lại. Đây là pattern giúp app tách logic cache ra khỏi business logic.</p>
+
+    <h3>9.3 Write Through</h3>
+    <p>App ghi dữ liệu vào cache và database cùng lúc. Pattern này giúp cache luôn đồng bộ với source of truth, nhưng đòi hỏi chi phí ghi cao hơn.</p>
+
+    <h3>9.4 Write Back</h3>
+    <p>App ghi vào cache trước, và database được cập nhật sau theo lịch trình hoặc batch. Nó rất tốt cho throughput ghi, nhưng rủi ro mất data nếu cache bị crash trước khi flush về DB.</p>
+
+    <h2>10. Vấn đề thực tế</h2>
+
+    <h3>10.1 Cache Stampede</h3>
+    <p>Khi nhiều request cùng lúc đến cùng một key vừa hết TTL, lượng lớn request đồng loạt đổ vào DB, gây quá tải. Đây là tình huống rất hay gặp ở hệ thống có traffic lớn.</p>
+    <p>Giải pháp: dùng lock, preload cache trước khi hết hạn, hoặc phân tán TTL theo random jitter để tránh cùng expire.</p>
+
+    <h3>10.2 Cache Penetration</h3>
+    <p>Nếu request liên tục vào những key không tồn tại, cache sẽ miss mãi, database bị spam bởi những truy vấn vô nghĩa. Cách khắc phục thường là cache giá trị null hoặc dùng bloom filter.</p>
+
+    <h3>10.3 Cache Breakdown</h3>
+    <p>Xảy ra khi một key hot vừa hết TTL, khiến tất cả request tập trung vào nó. Khác với stampede ở chỗ: nó là 1 key, nhưng traffic vào key đó cực lớn.</p>
+
+    <h3>10.4 Cache Avalanche</h3>
+    <p>Khi cache toàn bộ hết hạn hoặc bị mất, tất cả traffic đổ vào database cùng lúc. Để tránh, cần TTL phân tán, rate limit, hoặc nhiều lớp cache.</p>
+
+    <h2>11. Các loại cache trong thực tế</h2>
+
+    <h3>Local Cache</h3>
+    <p>Cache nằm trong cùng process với app. Ví dụ: HashMap trong Java, dict trong Python, hoặc package cache trong Node.js. Nó cực nhanh nhưng không chia sẻ giữa nhiều instance.</p>
+
+    <h3>Distributed Cache</h3>
+    <p>Cache chạy trên một hệ thống tách biệt, nhiều instance có thể cùng chia sẻ. Redis và Memcached là ví dụ điển hình. Redis phổ biến hơn vì hỗ trợ nhiều cấu trúc dữ liệu, pub/sub, và khả năng persistence tốt hơn.</p>
+
+    <h3>Browser Cache</h3>
+    <p>Trình duyệt lưu các file tĩnh như CSS, JS, hình ảnh, và response API để giảm lần request về server. Đây là một loại cache rất quan trọng cho web performance.</p>
+
+    <h3>CDN Cache</h3>
+    <p>CDN lưu nội dung ở các điểm gần người dùng hơn, giúp giảm độ trễ địa lý. Thường dùng cho hình ảnh, video, bundle JS/CSS, static content.</p>
+
+    <h3>Database Cache</h3>
+    <p>Các database cũng có cache nội bộ để hold page data, buffer pool, hoặc query plan. Đây là lớp cache không trực tiếp quan sát được nhưng rất quan trọng cho performance tổng thể.</p>
+
+    <h2>12. Cache và stale data</h2>
+    <p>Cache là bản sao tạm thời, không phải source of truth. Bản sao này có thể cũ đi trong một khoảng thời gian. Đây là điều cần chấp nhận trong hệ thống thực tế.</p>
+
+    <p>Độ chấp nhận của stale data phụ thuộc vào business:</p>
+    <ul>
+      <li>Thông tin sản phẩm: vài phút là chấp nhận được</li>
+      <li>Số lượt thích: vài phút hoặc vài giờ là chấp nhận được</li>
+      <li>Số dư tài khoản: không chấp nhận stale data</li>
+      <li>Trạng thái kho hàng: cần gần real-time</li>
+    </ul>
+    <p>Đây là lý do cần có chiến lược cache phù hợp với từng loại dữ liệu.</p>
+
+    <h2>13. Khi nào không nên dùng cache?</h2>
+    <p>Cache không phải là lời giải cho mọi bài toán. Nó không hiệu quả nếu:</p>
+    <ul>
+      <li>Dữ liệu thay đổi quá thường xuyên</li>
+      <li>Yêu cầu real-time tuyệt đối</li>
+      <li>Request rất cá nhân, không có tính lặp lại</li>
+      <li>Traffic thấp, không đủ lợi ích để bù lại độ phức tạp</li>
+    </ul>
+    <p>Trong những trường hợp đó, cache chỉ làm tăng độ phức tạp mà không mang lại hiệu quả rõ rệt.</p>
+
+    <h2>14. Checklist khi thiết kế cache</h2>
+    <p>Trước khi thêm cache, hãy tự hỏi:</p>
+    <ul>
+      <li>Dữ liệu này có được reuse không?</li>
+      <li>Hit rate dự kiến có cao không?</li>
+      <li>TTL nên là bao lâu?</li>
+      <li>Invalidation làm thế nào?</li>
+      <li>Có xử lý được stampede không?</li>
+      <li>Cache fail có fallback về DB không?</li>
+      <li>Security có đảm bảo không leak dữ liệu nhạy cảm không?</li>
+    </ul>
+    <p>Đây là những câu hỏi quan trọng để cache thực sự có lợi, chứ không chỉ làm tăng độ phức tạp.</p>
+
+    <h2>15. Tóm tắt</h2>
+    <p>Cache là nơi lưu trữ tạm thời dữ liệu để giảm thời gian xử lý và giảm tải cho hệ thống. Khi cache đúng chỗ, nó giúp response nhanh hơn, hệ thống scale tốt hơn, và trải nghiệm người dùng mượt mà hơn.</p>
+    <p>Nhưng cache cũng mang theo trade-off: cần RAM, cần invalidation, và cần chấp nhận stale data trong một khoảng thời gian.</p>
+    <p>Ba nguyên tắc cốt lõi của cache là:</p>
+    <ul>
+      <li>cache đúng dữ liệu</li>
+      <li>TTL hợp lý</li>
+      <li>invalidation đúng cách</li>
+    </ul>
+    <p>Hiểu được ba điều này, bạn đã có nền tảng tốt để tối ưu hệ thống và xây dựng ứng dụng đáng tin cậy hơn.</p>
+
+    <blockquote>
+      Cache không phải là source of truth. Nó là bản sao tạm thời để tăng tốc — và bản sao đó đôi khi sẽ cũ đi một chút. Điều quan trọng là biết chấp nhận mức độ stale nào là hợp lý với business của mình.
+    </blockquote>
+
+    <!-- POST_BODY_END -->
+  </article>
+
+  <site-footer root-path="../"></site-footer>
+
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

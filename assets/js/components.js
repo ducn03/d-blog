@@ -198,7 +198,20 @@ class PostGrid extends HTMLElement {
     }
 
     if (postsToRender.length === 0) {
-      this.innerHTML = `<p style="color: var(--color-ink-soft);">Chưa có bài viết nào.</p>`;
+      this.innerHTML = `
+        <div class="empty-state" aria-live="polite">
+          <svg class="empty-state__illustration" viewBox="0 0 160 120" aria-hidden="true">
+            <rect x="24" y="20" width="84" height="72" rx="8" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M48 36h36M48 50h28M48 64h32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="110" cy="52" r="16" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M110 38v14M103 52h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M110 80l18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M32 94h60" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="empty-state__title">Chưa có bài viết nào</h3>
+          <p class="empty-state__text">Cùng quay lại sau để xem những chia sẻ mới nhất nhé.</p>
+        </div>
+      `;
       return;
     }
 
