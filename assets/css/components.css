@@ -239,6 +239,12 @@
   width: 100%;
 }
 
+.comments-section__notice {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);

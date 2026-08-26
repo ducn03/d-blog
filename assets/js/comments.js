@@ -28,13 +28,21 @@
       }
     }
 
-    if (!projectId || projectId === 'YOUR_COMMENTBOX_PROJECT_ID') return;
+    if (!projectId || projectId === 'YOUR_COMMENTBOX_PROJECT_ID') {
+      const box = document.querySelector('.commentbox');
+      if (box) {
+        box.innerHTML = '<p class="comments-section__notice">CommentBox chưa được cấu hình. Hãy thêm Project ID vào assets/js/site-config.js.</p>';
+      }
+      return;
+    }
     if (typeof window.commentBox === 'function') {
       window.commentBox(projectId, {
         defaultBoxId: getPageBoxId(),
         sortOrder: 'newest',
+        backgroundColor: 'transparent',
         textColor: '#302b38',
-        subtextColor: '#6c6472'
+        subtextColor: '#6c6472',
+        tlcParam: 'comment'
       });
       return;
     }
@@ -47,8 +55,10 @@
         window.commentBox(projectId, {
           defaultBoxId: getPageBoxId(),
           sortOrder: 'newest',
+          backgroundColor: 'transparent',
           textColor: '#302b38',
-          subtextColor: '#6c6472'
+          subtextColor: '#6c6472',
+          tlcParam: 'comment'
         });
       }
     };

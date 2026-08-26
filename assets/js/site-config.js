@@ -1,6 +1,6 @@
 window.SITE_CONFIG = {
   domain: 'https://ducinsights.io.vn',
-  commentBoxProjectId: ''
+  commentBoxProjectId: '5644308573061120-proj'
 };
 
 (function () {
