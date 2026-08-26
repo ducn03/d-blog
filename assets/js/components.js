@@ -23,6 +23,7 @@ class SiteHeader extends HTMLElement {
               <li><a href="${rootPath}category/cong-nghe.html" class="nav__link">Công nghệ</a></li>
               <li><a href="${rootPath}category/am-thuc.html" class="nav__link">Ẩm thực</a></li>
               <li><a href="${rootPath}category/du-lich.html" class="nav__link">Du lịch</a></li>
+              <li><a href="${rootPath}category/tro-choi.html" class="nav__link">Trò chơi</a></li>
               <li><a href="${rootPath}q-a.html" class="nav__link">Hỏi đáp</a></li>
               <li>
                 <button type="button" class="nav__search" aria-label="Tìm kiếm">
