@@ -171,6 +171,7 @@ class SiteFooter extends HTMLElement {
                 <li><a href="${rootPath}category/cong-nghe.html" class="footer__link">Công nghệ</a></li>
                 <li><a href="${rootPath}category/am-thuc.html" class="footer__link">Ẩm thực</a></li>
                 <li><a href="${rootPath}category/du-lich.html" class="footer__link">Du lịch</a></li>
+                <li><a href="${rootPath}category/tro-choi.html" class="footer__link">Trò chơi</a></li>
                 <li><a href="${rootPath}q-a.html" class="footer__link">Hỏi đáp</a></li>
               </ul>
             </div>
