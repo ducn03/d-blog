@@ -8,6 +8,24 @@
     return pageName.replace(/\.html$/i, '') || 'home';
   }
 
+  function getCommentBoxOptions() {
+    return {
+      defaultBoxId: getPageBoxId(),
+      sortOrder: 'newest',
+      backgroundColor: '#FFFBFE',
+      textColor: '#241F2B',
+      subtextColor: '#4A4552',
+      tlcParam: 'comment',
+      createBoxUrl(boxId, pageLocation) {
+        const configuredDomain = String(config.domain || window.location.origin).replace(/\/+$/, '');
+        const canonicalUrl = new URL(pageLocation.href);
+        const configuredUrl = new URL(configuredDomain + canonicalUrl.pathname);
+        configuredUrl.hash = boxId;
+        return configuredUrl.href;
+      }
+    };
+  }
+
   function loadCommentBox() {
     const footer = document.querySelector('site-footer');
     if (!document.querySelector('.comments-section')) {
@@ -36,14 +54,7 @@
       return;
     }
     if (typeof window.commentBox === 'function') {
-      window.commentBox(projectId, {
-        defaultBoxId: getPageBoxId(),
-        sortOrder: 'newest',
-        backgroundColor: 'transparent',
-        textColor: '#302b38',
-        subtextColor: '#6c6472',
-        tlcParam: 'comment'
-      });
+      window.commentBox(projectId, getCommentBoxOptions());
       return;
     }
 
@@ -52,14 +63,7 @@
     script.async = true;
     script.onload = function () {
       if (typeof window.commentBox === 'function') {
-        window.commentBox(projectId, {
-          defaultBoxId: getPageBoxId(),
-          sortOrder: 'newest',
-          backgroundColor: 'transparent',
-          textColor: '#302b38',
-          subtextColor: '#6c6472',
-          tlcParam: 'comment'
-        });
+        window.commentBox(projectId, getCommentBoxOptions());
       }
     };
     document.head.appendChild(script);

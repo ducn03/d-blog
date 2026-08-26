@@ -237,6 +237,9 @@
 .comments-section .commentbox {
   min-height: 180px;
   width: 100%;
+  padding: var(--sp-3) 0;
+  border-radius: var(--radius-md);
+  background: #FFFBFE;
 }
 
 .comments-section__notice {
