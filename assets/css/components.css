@@ -234,14 +234,6 @@
   color: var(--color-ink);
 }
 
-.comments-section__count {
-  color: var(--color-primary);
-  font-family: var(--font-body);
-  font-size: 0.65em;
-  font-weight: 600;
-  vertical-align: middle;
-}
-
 .comments-section .commentbox {
   min-height: 180px;
   width: 100%;
@@ -254,20 +246,6 @@
   margin: 0;
   color: var(--color-ink-soft);
   font-size: 0.95rem;
-}
-
-.commentbox-count-source {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.card__comments {
-  color: var(--color-primary);
 }
 
 .card:hover {
@@ -592,7 +570,7 @@
 }
 
 /* RESPONSIVE — Mobile (<640px) */
-@media (max-width: 639px) {
+@media (max-width: 820px) {
   .header__inner {
     gap: var(--sp-2);
   }
