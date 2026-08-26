@@ -406,7 +406,7 @@
 
 .hero__cover img {
   width: 100%;
-  max-height: 220px;
+  max-height: auto;
   height: auto;
   object-fit: contain;
   display: block;
