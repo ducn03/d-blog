@@ -8,6 +8,10 @@
     return pageName.replace(/\.html$/i, '') || 'home';
   }
 
+  function getSectionTitle() {
+    return getPageBoxId() === 'q-a' ? 'Góc hỏi đáp' : 'Góc bình luận';
+  }
+
   function getCommentBoxOptions() {
     return {
       defaultBoxId: getPageBoxId(),
@@ -34,7 +38,7 @@
       section.setAttribute('aria-labelledby', 'comments-title');
       section.innerHTML = `
         <div class="container">
-          <h2 id="comments-title" class="comments-section__title">Góc bình luận</h2>
+          <h2 id="comments-title" class="comments-section__title">${getSectionTitle()}</h2>
           <div class="commentbox"></div>
         </div>
       `;

@@ -23,6 +23,7 @@ class SiteHeader extends HTMLElement {
               <li><a href="${rootPath}category/cong-nghe.html" class="nav__link">Công nghệ</a></li>
               <li><a href="${rootPath}category/am-thuc.html" class="nav__link">Ẩm thực</a></li>
               <li><a href="${rootPath}category/du-lich.html" class="nav__link">Du lịch</a></li>
+              <li><a href="${rootPath}q-a.html" class="nav__link">Hỏi đáp</a></li>
               <li>
                 <button type="button" class="nav__search" aria-label="Tìm kiếm">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
@@ -140,7 +141,8 @@ class SiteHeader extends HTMLElement {
     } else {
       links.forEach(link => {
         const href = link.getAttribute('href');
-        if (href.includes('category/') && currentPath.includes(href.replace('../', ''))) {
+        const normalizedHref = href.replace('../', '');
+        if (currentPath.endsWith(normalizedHref)) {
           link.classList.add('nav__link--active');
         }
       });
@@ -168,6 +170,7 @@ class SiteFooter extends HTMLElement {
                 <li><a href="${rootPath}category/cong-nghe.html" class="footer__link">Công nghệ</a></li>
                 <li><a href="${rootPath}category/am-thuc.html" class="footer__link">Ẩm thực</a></li>
                 <li><a href="${rootPath}category/du-lich.html" class="footer__link">Du lịch</a></li>
+                <li><a href="${rootPath}q-a.html" class="footer__link">Hỏi đáp</a></li>
               </ul>
             </div>
             <div>
