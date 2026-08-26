@@ -61,7 +61,7 @@ class SiteHeader extends HTMLElement {
 
     const renderResults = (query) => {
       const normalized = query.trim().toLowerCase();
-      const posts = Array.isArray(BLOG_POSTS) ? BLOG_POSTS : [];
+      const posts = Array.isArray(window.BLOG_POSTS) ? window.BLOG_POSTS : [];
 
       if (!normalized) {
         resultsContainer.innerHTML = '<div class="search-result__meta">Nhập từ khóa để tìm bài viết bạn muốn đọc.</div>';
