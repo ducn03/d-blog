@@ -218,101 +218,25 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.cusdis-section {
+.comments-section {
   position: relative;
   z-index: 1;
   overflow: visible;
   padding: var(--sp-7) 0 var(--sp-8);
+  border-top: 1px solid var(--color-border);
 }
 
-.cusdis-section__header {
-  margin-bottom: var(--sp-4);
-}
-
-.cusdis-section__title {
-  font-size: clamp(1.5rem, 2vw, 2rem);
+.comments-section__title {
+  margin: 0 0 var(--sp-4);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.1;
   color: var(--color-ink);
 }
 
-#cusdis_thread {
+.comments-section .commentbox {
+  min-height: 180px;
   width: 100%;
-  max-width: 100%;
-  min-height: auto;
-  overflow: visible !important;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-}
-
-#cusdis_thread * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-#cusdis_thread .cusdis-main,
-#cusdis_thread .cusdis-body,
-#cusdis_thread .cusdis-comment-box,
-#cusdis_thread .cusdis-comment,
-#cusdis_thread textarea,
-#cusdis_thread input,
-#cusdis_thread .cusdis-textarea {
-  max-height: none !important;
-  height: auto !important;
-  overflow: visible !important;
-}
-
-#cusdis_thread textarea,
-#cusdis_thread input,
-#cusdis_thread .cusdis-textarea,
-#cusdis_thread .cusdis-comment-box {
-  width: 100%;
-  min-height: 120px;
-  resize: vertical;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg);
-  color: var(--color-ink);
-  padding: 0.9rem 1rem;
-  font: inherit;
-}
-
-#cusdis_thread input {
-  min-height: 48px;
-}
-
-#cusdis_thread .cusdis-btn,
-#cusdis_thread button,
-#cusdis_thread .cusdis-submit {
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: #fff;
-  padding: 0.8rem 1.2rem;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-#cusdis_thread .cusdis-comment-box {
-  min-height: 120px;
-}
-
-#cusdis_thread .cusdis-header,
-#cusdis_thread .cusdis-footer,
-#cusdis_thread .cusdis-pagination,
-#cusdis_thread .cusdis-comment-actions {
-  margin-top: 0.75rem;
-}
-
-#cusdis_thread ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-#cusdis_thread ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 999px;
 }
 
 .card:hover {

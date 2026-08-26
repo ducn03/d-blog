@@ -192,7 +192,7 @@ class PostGrid extends HTMLElement {
     const rootPath = this.getAttribute('root-path') || '';
     const category = this.getAttribute('category') || 'all';
 
-    let postsToRender = typeof BLOG_POSTS !== 'undefined' ? BLOG_POSTS : [];
+    let postsToRender = Array.isArray(window.BLOG_POSTS) ? window.BLOG_POSTS : [];
     if (category !== 'all') {
       postsToRender = postsToRender.filter(p => p.categorySlug === category);
     }

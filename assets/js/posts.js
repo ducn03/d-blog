@@ -10,3 +10,5 @@ const BLOG_POSTS = [
     readingTime: 8
   }
 ];
+
+window.BLOG_POSTS = BLOG_POSTS;
