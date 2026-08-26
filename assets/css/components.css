@@ -218,6 +218,36 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.cusdis-section {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  padding: var(--sp-7) 0 var(--sp-8);
+}
+
+.cusdis-section__header {
+  margin-bottom: var(--sp-4);
+}
+
+.cusdis-section__title {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: var(--color-ink);
+}
+
+#cusdis_thread {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+}
+
+#cusdis_thread * {
+  max-width: 100%;
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
