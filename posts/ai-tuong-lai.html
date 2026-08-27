@@ -58,7 +58,7 @@
       <p>ChatGPT mạnh ở chỗ hiểu ngôn ngữ và bóc tách vấn đề. Gemini thì đi research. Có dữ liệu rồi thì đưa Claude chốt lại.</p>
     </blockquote>
 
-    <p>Lúc đầu mình thấy hơi... rườm rà. Ba con AI cho một việc, nghe cứ như đi họp 3 phòng ban chỉ để duyệt một cái email. Nhưng thử một tuần thì thấy: mỗi con làm đúng phần việc của nó, không đứa nào phải "gánh" việc không hợp với nó.</p>
+    <p>Lúc đầu mình thấy hơi... rườm rà. Ba con AI cho một việc, nghe cứ như đi họp 3 phòng ban chỉ để duyệt một cái email. Nhưng thử mới thấy: mỗi con làm đúng phần việc của nó, không đứa nào phải "gánh" việc không hợp với nó.</p>
 
     <h2>Nhận ra: AI khác nhau không chỉ ở mức "thông minh"</h2>
     <p>Sau khi dùng cả ba một thời gian, mình nhận ra thứ khác nhau không phải là "con nào giỏi hơn", mà là <strong>cách mỗi con tiếp cận một vấn đề</strong>.</p>
@@ -76,7 +76,11 @@
     <h3>Không phải vì nó luôn đúng nhất</h3>
     <p>Mà vì nó hiểu mình đang hỏi cái gì — kể cả khi mình diễn đạt rất lộn xộn.</p>
 
-    <p>Mình từng nhắn kiểu: "Sao em không hiểu cái này vậy, làm A quen rồi qua B là rối." ChatGPT không chỉ giải thích B — nó chỉ ra: "Vì bạn đang quen tư duy theo A, nên khi chuyển sang B, bạn vô tình mang mental model cũ vào, dẫn đến bị vướng ở bước X."</p>
+    <p>Mình từng nhắn kiểu: "Sao em không hiểu cái này vậy, làm A quen rồi qua B là rối." ChatGPT không chỉ giải thích B — nó chỉ ra: "Vì bạn đang quen tư duy theo A, nên khi chuyển sang B, bạn vô tình mang mental model (thói quen tư duy) cũ vào, dẫn đến bị vướng ở bước X."</p>
+
+    <p>Trực quan hơn nhé, hãy lấy ví dụ về <strong>"Cánh cửa Norman" (Norman Door)</strong> — một thuật ngữ nổi tiếng trong cuốn sách <em>The Design of Everyday Things</em> của Giáo sư Don Norman. Đã bao giờ bạn đứng trước cửa kính một quán cà phê, thấy dán chữ <strong>"ĐẨY"</strong> to đùng nhưng bạn vẫn cứ ra sức... nắm tay cầm để kéo?</p>
+
+    <p>Một người bình thường sẽ bảo: <em>"Bạn không biết đọc chữ à?"</em>. Nhưng ChatGPT sẽ thấu hiểu giống như một nhà tâm lý học: <em>"Bạn không sai. Lỗi là do cánh cửa đó gắn một cái tay nắm dọc to bản — thứ mà não bộ bạn từ nhỏ đã mặc định (mental model) là dùng để 'kéo'. Khi thói quen vật lý mâu thuẫn với dòng chữ, cơ thể bạn sẽ tự động làm theo thói quen cũ."</em></p>
 
     <blockquote>
       <p>Nó không chỉ giải thích "cái gì". Nó giúp mình hiểu "vì sao mình không hiểu".</p>
@@ -84,30 +88,38 @@
 
     <p>Lúc mình học cách viết prompt cho công việc thiết kế, ChatGPT không đưa công thức chung chung — nó hỏi lại mình từng làm ngành gì trước đây, rồi giải thích khái niệm mới bằng chính ví dụ trong ngành cũ của mình. Dễ hiểu hẳn.</p>
 
-    <h3>Memory / cá nhân hoá</h3>
-    <p>Trong trải nghiệm của mình, càng dùng lâu và càng nhiều cuộc trò chuyện, ChatGPT càng nắm được nhiều ngữ cảnh về cách mình suy nghĩ, cách mình viết, và những gì mình quan tâm.</p>
+    <h3>Memory / Cá nhân hóa dựa trên khả năng Long-context Retrieval (Truy xuất ngữ cảnh dài hạn)</h3>
+    <p>Cá nhân hóa của AI không phải là tính năng dự đoán từ hay vài thông tin cơ bản được lưu thủ công (chẳng hạn như việc bạn phải tự gõ thủ công từng từ gợi ý trên bàn phím điện thoại, tự cài đặt sẵn các phím tắt gõ tắt, hay tự tay điền điền lại phần tiểu sử, thông tin cá nhân vào khung cài đặt của ứng dụng). Bản chất kỹ thuật của nó nằm ở việc hệ thống tự động truy xuất lịch sử trò chuyện cũ kết hợp với các thiết lập ngầm.</p>
+    
+    <p>Khi bạn đặt một câu hỏi ngắn gọn, mô hình ngôn ngữ lớn không chỉ phân tích câu đó độc lập. Nó quét lại các thông số về phong cách, độ dài câu, và từ vựng bạn từng dùng để ràng buộc tham số sinh văn bản — <strong>Generation</strong>. Nhờ vậy, câu trả lời bám sát đúng cách tư duy của bạn thay vì dùng một mẫu chung chung.</p>
+    
+    <p>Nói đến AI là phải nhắc đến <strong>Session (Phiên làm việc)</strong>. Toàn bộ chuỗi tin nhắn trong một tab chat tạo thành một Context Window (Cửa sổ ngữ cảnh) duy nhất, nơi Attention Mechanism (Cơ chế chú ý) giữ cho các ý tưởng liên kết chặt chẽ với nhau từ bước lên ý tưởng đến lúc hoàn thiện, giúp bạn không phải lặp lại bối cảnh từ đầu.</p>
+    
+    <p><em><strong>Trực quan hơn nhé:</strong></em> Điều này giống hệt như cách một <strong>barista (nhân viên pha chế)</strong> quen thuộc tại quán cà phê ruột ghi nhớ sở thích của bạn. Thay vì mỗi lần bước vào quán bạn đều phải đọc lại một tràng dài: <em>"Cho một ly espresso, ít đá, bỏ đường, thêm một chút sữa tươi"</em>, người barista chỉ cần nhìn thấy bạn đẩy cửa bước vào là tự động thao tác đúng ý hệt như những lần trước. Trong tâm lý học nhận thức, đây gọi là cơ chế <strong>Schema Activation (Cấu trúc tri thức sẵn có)</strong> — nơi não bộ bỏ qua các bước giải thích rườm rà ban đầu nhờ vào dữ liệu quá khứ đã được lưu trữ sẵn.</p>
 
-    <p>Hỏi "câu này nên nói sao cho khéo?" — nó không chỉ sửa câu chữ, mà còn cân nhắc: mình thường nói chuyện kiểu gì, thích ngắn hay dài, phản ứng ra sao khi bị góp ý. Đó mới thực sự là cá nhân hoá, chứ không chỉ là autocomplete.</p>
-
-    <h3>Mạnh ở ngôn ngữ</h3>
-    <p>Có lần mình dùng Claude viết bản nháp trước vì nó gọn. Nhưng đọc lại, vài chỗ câu chữ "nuốt không nổi" — hơi cứng. Cuối cùng vẫn phải vòng lại ChatGPT để tỉa văn cho tự nhiên hơn.</p>
+    <p>Trong thực tế triển khai, mỗi con AI có một điểm mạnh riêng:</p>
+    <ul>
+        <li><strong>Claude:</strong> Xử lý văn bản dài rất mạch lạc, cấu trúc rõ ràng, phù hợp để dựng khung sườn hoặc viết bản nháp ban đầu — <strong>Outline</strong>.</li>
+        <li><strong>ChatGPT:</strong> Linh hoạt hơn ở lớp từ vựng cấp câu đơn, hạn chế tối đa các lỗi văn phong cứng nhắc — <strong>AI-isms</strong>, phù hợp để tinh chỉnh và gọt giũa câu chữ ở bước cuối cùng.</li>
+    </ul>
 
     <h2>Gemini — người đi đào dữ liệu</h2>
-    <p>"Hiểu mình" không có nghĩa là làm tốt mọi việc. Đây là lúc Gemini vào cuộc.</p>
+    <p>"Hiểu mình" không có nghĩa là làm tốt mọi việc. Mà là biết rõ mình mạnh yếu ở đâu để hành xử khôn ngoan.</p>
+    <p>Giống như việc bạn giao việc thuyết trình cho một thành viên sợ giao tiếp trong nhóm vậy. Họ sẽ không thể làm tốt được việc thuyết trình.</p>
 
     <h3>Research</h3>
-    <p>Một bài blog cần gom từ 10 nguồn, vài file PDF, vài cái screenshot, và tài liệu cũ nằm sẵn trong Drive — đây chính là lúc Gemini tiện nhất: không cần import lẻ tẻ từng file, nó đọc và nhớ hết luôn.</p>
+    <p>Viết một bài blog nghiêm túc thường không bắt đầu từ trang giấy trắng — nó bắt đầu từ một đống hỗn độn: vài file PDF dài cả chục trang, chục tấm screenshot chụp vội, vài ghi chú cũ nằm quên trong Drive từ tháng trước. Cái khó không phải là đọc từng thứ một, mà là phải đọc hết cùng lúc để thấy được bức tranh chung.</p>
+    <p>Đây là chỗ Gemini tiện hơn hẳn hai đứa còn lại: không cần tóm tắt trước, không cần chọn lọc trước khi đưa vào. Quăng nguyên cả đống vào, nó đọc và giữ được ngữ cảnh của tất cả, thay vì xử lý từng file riêng lẻ rồi mình phải tự ráp lại.</p>
 
     <h3>Đọc ảnh / nhiều file cùng lúc</h3>
-    <p>Mình từng quăng một lúc gần 20 ảnh chụp màn hình ghi chú họp vào Gemini và nhờ nó tổng hợp thành một bản outline — nó ra kết quả nhanh, đủ ý, dù cách trình bày chưa "đẹp" lắm.</p>
-
-    <p>Nói ngắn gọn: nó mạnh ở khả năng "ăn input" — càng nhiều, càng đa dạng, càng ổn.</p>
+    <p>Có lần sau một buổi họp, mình có gần 20 tấm ảnh chụp bảng ghi chú viết tay — chữ nguệch ngoạc, mũi tên chằng chịt, đúng kiểu ghi vội giữa cuộc họp. Mình quăng hết vào Gemini, nhờ nó gom lại thành một bản outline. Nó ra kết quả rất nhanh, đủ ý chính, dù cách trình bày còn hơi thô, chưa "đẹp".</p>
+    <p>Vài lần thử với những kiểu input hỗn hợp khác — vừa ảnh vừa văn bản, vừa bảng biểu — mình thấy cùng một điều: input càng nhiều, càng lộn xộn, càng đa dạng định dạng, Gemini xử lý lại càng ổn định. Đây có lẽ là lý do người ta hay gọi nó là con AI "ăn tạp" nhất trong ba đứa.</p>
 
     <h3>Điểm yếu: cá nhân hoá</h3>
-    <p>Nó có thể đưa ra một câu trả lời rất hợp lý — nhưng chưa chắc là câu trả lời <em>hợp với mình</em>.</p>
-
-    <p>Nói cách khác, Gemini khá hợp để... bói toán =))) Vì lúc mình cần một góc nhìn ít bị ảnh hưởng bởi cá tính riêng, cái "vô cảm" đó lại thành lợi thế.</p>
-
+    <p>Nhưng cái mạnh ở khâu xử lý dữ liệu lại đi kèm một cái yếu rõ rệt: câu trả lời của Gemini thường đúng, thường hợp lý, nhưng lại có cảm giác... chung chung. Nó trả lời như thể đang trả lời cho bất kỳ ai hỏi câu đó, chứ không phải đang trả lời riêng cho mình.</p>
+    <p>Có lần mình hỏi cùng một câu cho cả ba con, câu trả lời của Gemini là câu duy nhất mình đọc xong không thấy "quen" — như đọc một bài báo tổng hợp, không phải một cuộc trò chuyện.</p>
+    <p>Nhưng chính cái "vô cảm" đó, trong một số trường hợp, lại là lợi thế. Lúc mình cần một góc nhìn không bị lệch bởi cách mình đã quen nghĩ, không bị ảnh hưởng bởi những gì mình từng nói trước đó — thì Gemini lại đúng là con phù hợp nhất để hỏi.</p>
+    
     <h2>Claude — người ngồi cuối bàn để chốt</h2>
     <p>Sau khi đào được cả đống dữ liệu, vấn đề mới xuất hiện: nhiều quá, không biết giữ gì bỏ gì. Đây là lúc Claude vào việc.</p>
 
