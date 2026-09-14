@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bạn Có Thật Sự Hiểu Class Không? — D-Blog</title>
+  <meta name="description" content="Mình từng nghĩ mình hiểu class từ năm nhất đại học. Cho đến một buổi phỏng vấn, mình mới nhận ra mình chỉ đang thuộc cú pháp, chứ chưa từng hiểu bản chất.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/post.css">
+</head>
+<body>
+
+  <site-header root-path="../"></site-header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero__pill">
+      <a href="../category/cong-nghe.html" class="pill pill--cong-nghe">Công nghệ</a>
+    </div>
+    <h1 class="hero__title">Bạn Có Thật Sự Hiểu Class Không?</h1>
+    <div class="hero__meta">
+      <span>Đức Nguyễn</span>
+      <span class="hero__meta-dot"></span>
+      <span>28 Tháng 8, 2026</span>
+      <span class="hero__meta-dot"></span>
+      <span>13 phút đọc</span>
+    </div>
+    <div class="hero__cover">
+      <img src="../assets/img/posts/class-khuon-banh-cover.png" alt="Khuôn làm bánh quy và những chiếc bánh quy được tạo ra từ khuôn, ẩn dụ cho class và object">
+    </div>
+  </section>
+
+  <!-- POST BODY -->
+  <article class="post-body">
+    <!-- POST_BODY_START -->
+
+    <h2>Câu hỏi tưởng dễ, hoá ra mình trả lời sai từ gốc</h2>
+    <p>Có một buổi phỏng vấn mình nhớ mãi. Không phải vì nó khó — mà vì câu hỏi đầu tiên, câu hỏi "khởi động" tưởng như chỉ để làm quen, lại là câu mình trả lời tệ nhất buổi hôm đó.</p>
+
+    <p>Người phỏng vấn hỏi: <em>"Em giải thích giúp anh, class là gì?"</em></p>
+
+    <p>Mình trả lời trơn tru, đúng như trong sách: "Class là khuôn mẫu để tạo ra object, chứa thuộc tính và phương thức." Người phỏng vấn gật đầu, rồi hỏi tiếp một câu tưởng chỉ là biến thể của câu trước: <em>"Vậy tại sao mình cần class, thay vì chỉ dùng biến với hàm bình thường?"</em></p>
+
+    <p>Mình khựng lại. Không phải vì không biết trả lời — mà vì nhận ra mình chưa từng tự hỏi câu đó. Suốt bao năm viết <code>class</code> trong code, mình chưa bao giờ dừng lại để hiểu tại sao nó tồn tại. Mình chỉ đang gõ nó ra như một phản xạ.</p>
+
+    <blockquote>
+      <p>Thuộc định nghĩa và hiểu bản chất là hai chuyện hoàn toàn khác nhau — ranh giới đó chỉ lộ ra khi có ai đó hỏi ngược lại "tại sao".</p>
+    </blockquote>
+
+    <h2>Class là cái khuôn bánh quy, object là chiếc bánh</h2>
+    <p>Ẩn dụ mình thấy "thấm" nhất khi tìm lại gốc rễ của khái niệm này là: <strong>class giống một cái khuôn làm bánh quy hình ngôi sao.</strong></p>
+
+    <p>Cái khuôn đó không phải là bánh — bạn không ăn được nó. Nó chỉ quy định <em>hình dạng</em>: bánh làm ra sẽ có mấy cánh sao, viền dày bao nhiêu. Còn những chiếc bánh thật, nằm trên khay, mỗi cái một màu icing, mỗi cái độ giòn khác nhau tuỳ thời gian nướng — đó mới là thứ bạn thực sự cầm và ăn.</p>
+
+    <p>Trong lập trình: <strong>class</strong> là cái khuôn, <strong>object</strong> (hay <strong>instance</strong>) là từng chiếc bánh được nặn ra từ khuôn đó.</p>
+    <ul>
+      <li>Class <code>Bird</code> không phải là một con chim. Nó là bản thiết kế, quy định con chim sẽ có gì (tên, màu lông, cân nặng) và làm được gì (bay, hót, ăn).</li>
+      <li><code>new Bird()</code> mới là hành động "nặn" ra một con chim cụ thể, có thật, từ bản thiết kế đó.</li>
+    </ul>
+
+    <p>Và đây chính là câu trả lời cho câu hỏi khiến mình khựng lại hôm phỏng vấn: <strong>tại sao cần class thay vì chỉ dùng biến và hàm rời rạc?</strong> Vì nếu không có khuôn, mỗi lần muốn tạo một con chim mới, bạn phải viết lại từ đầu toàn bộ cấu trúc: tên biến gì, hàm bay viết ra sao, hàm hót định nghĩa thế nào. Class giải quyết đúng vấn đề đó — định nghĩa một lần, tái sử dụng vô hạn lần.</p>
+
+    <h2>Fields: cùng một khuôn, nhưng icing mỗi cái một màu</h2>
+    <p>Đây là chỗ dễ hiểu lầm nhất: vì class định nghĩa thuộc tính, nên nhiều người nghĩ mọi object sinh ra từ cùng một class sẽ giống hệt nhau. Không phải vậy.</p>
+
+    <p>Cái khuôn ngôi sao chỉ quy định <em>hình dạng</em> — nó không quyết định cái bánh nào sẽ được phủ icing đỏ, cái nào phủ icing vàng. Trong class, đó là vai trò của <strong>fields</strong> (còn gọi là <strong>instance variables</strong>):</p>
+    <ul>
+      <li>Class chỉ nói: "con chim sẽ có một thuộc tính tên là màu lông".</li>
+      <li>Giá trị thật của thuộc tính đó — con này lông xanh, con kia lông đỏ — thuộc về từng object riêng, được gán lúc object đó ra đời.</li>
+    </ul>
+
+    <p>Nói ngắn gọn: <strong>class quy định cấu trúc dữ liệu sẽ có, còn mỗi object tự giữ giá trị dữ liệu của riêng nó.</strong> Đó là lý do hai object cùng chung một class vẫn có thể hoàn toàn khác nhau về trạng thái.</p>
+
+    <h2>Constructor: bước bắt buộc phải xong trước khi bánh rời khuôn</h2>
+    <p>Constructor là đoạn code chạy đúng <strong>một lần duy nhất</strong>, ngay tại thời điểm object được tạo ra (khi bạn gọi <code>new</code>). Nhiệm vụ chính của nó là gán giá trị khởi tạo cho các fields — giống như việc ép bột vào khuôn: đó là bước phải xảy ra ngay khi chiếc bánh "ra đời", không phải một việc làm thêm sau đó.</p>
+
+    <p>Ví dụ: một con chim vừa được tạo ra cần có tên ngay từ đầu, chứ không thể tồn tại một khoảng "vô danh" nào trước khi được đặt tên. Constructor chính là nơi đảm bảo điều đó — field <code>name</code> được gán giá trị ngay trong bước khởi tạo, chứ không để trống rồi tính sau.</p>
+
+    <h2>Methods: hành vi mà mọi chiếc bánh từ khuôn này đều có</h2>
+    <p>Nếu fields trả lời câu "bánh này có gì", thì <strong>methods</strong> trả lời câu "bánh này làm được gì".</p>
+
+    <p>Class <code>Bird</code> định nghĩa method <code>fly()</code>, <code>sing()</code> — nghĩa là mọi con chim tạo ra từ class này đều biết bay và hót. Nhưng mỗi con thực hiện theo "phong cách" riêng, tuỳ vào giá trị fields của chính nó — con nặng hơn có thể bay chậm hơn, dù cùng chạy chung một đoạn code <code>fly()</code>.</p>
+
+    <p>Điểm quan trọng: method chỉ được viết một lần trong class, nhưng mỗi lần gọi, nó luôn thao tác trên dữ liệu riêng của object đang gọi nó. Field và method không tách rời — chúng phối hợp với nhau mỗi lần method chạy.</p>
+
+    <h2>Static: thứ thuộc về cái khuôn, không thuộc về bất kỳ chiếc bánh nào</h2>
+    <p>Đây là khái niệm mình từng dùng sai nhiều nhất hồi mới học, vì không phân biệt rạch ròi được với fields/methods thông thường.</p>
+
+    <p>Fields và methods thông thường (gọi là <strong>instance members</strong>) thuộc về từng chiếc bánh riêng lẻ. Còn <strong>static members</strong> thuộc về chính cái khuôn — tồn tại độc lập, không gắn với chiếc bánh cụ thể nào, và mọi chiếc bánh sinh ra từ khuôn đó đều dùng chung một giá trị.</p>
+
+    <p>Ví dụ cụ thể: một biến static <code>totalBirdsCreated</code> đếm "tổng số con chim đã từng được tạo ra". Biến này không thuộc về riêng con chim nào — nó thuộc về class <code>Bird</code>, và tăng lên mỗi khi có một con chim mới ra đời, bất kể là con nào. Đây là lý do static field thường dùng để đếm số object đã tạo, hoặc lưu những giá trị dùng chung cho cả class, thay vì lặp lại riêng ở từng object.</p>
+
+    <h2>Encapsulation: bánh nằm trong hộp thuỷ tinh, muốn lấy phải mở nắp</h2>
+    <p>Một khái niệm khác hay bị học thuộc lòng mà không thực sự hiểu: <strong>encapsulation</strong> (tính đóng gói). Định nghĩa sách vở hay nói: "che giấu dữ liệu, chỉ cho truy cập qua phương thức công khai" — nghe khá trừu tượng nếu không có hình ảnh cụ thể đi kèm.</p>
+
+    <p>Hình ảnh dễ hình dung nhất: mỗi chiếc bánh sau khi ra khuôn được đặt vào một <strong>hộp thuỷ tinh có nắp đậy</strong>. Bạn không thể thò tay xuyên qua thành hộp để bốc bánh ra tuỳ ý, cũng không thể tự ý đổi hình dạng của nó khi nó đang nằm trong hộp. Muốn lấy bánh ra, hay muốn thay bánh khác vào, bạn bắt buộc phải đi qua cái nắp — mở đúng cách nó được thiết kế để mở.</p>
+
+    <p>Trong class, đó là lý do fields thường được khai báo <code>private</code>: giá trị bị "niêm phong" bên trong object, không ai từ bên ngoài chọc thẳng vào sửa được. Muốn đọc hay thay đổi giá trị, phải đi qua các method công khai được thiết kế riêng cho việc đó — thường gọi là <strong>getter</strong> (mở nắp để nhìn vào, không lấy ra) và <strong>setter</strong> (mở nắp để thay bánh mới vào).</p>
+
+    <p>Việc bắt buộc đi qua "cái nắp" này không phải để gây khó dễ. Nó đảm bảo mỗi lần dữ liệu thay đổi đều được kiểm tra trước — ví dụ setter cho field <code>age</code> có thể chặn luôn giá trị âm — thay vì để bất kỳ đoạn code nào ở bất kỳ đâu cũng có thể gán bừa một giá trị vô lý, phá vỡ trạng thái hợp lệ của object.</p>
+
+    <h2>Inheritance: khuôn mới dựa trên khuôn cũ, không làm lại từ đầu</h2>
+    <p>Giả sử bạn đã có sẵn khuôn bánh quy hình tròn cơ bản. Giờ bạn muốn có thêm một khuôn bánh tròn nhưng có thêm rãnh răng cưa ở viền. Bạn không cần thiết kế lại từ số 0 — bạn giữ nguyên phần "tròn" đã có, chỉ thêm phần chi tiết mới.</p>
+
+    <p>Đó là bản chất của <strong>inheritance</strong> (kế thừa): một class con (ví dụ <code>CookieRangCua extends CookieTron</code>) tự động sở hữu toàn bộ fields và methods của class cha, đồng thời có thể thêm hành vi mới hoặc ghi đè (override) một phần hành vi cũ để phù hợp với đặc điểm riêng của nó. Bạn không viết lại toàn bộ logic của "bánh tròn cơ bản" — bạn chỉ viết phần khác biệt, phần còn lại kế thừa nguyên vẹn.</p>
+
+    <p>Đây cũng là lúc <strong>polymorphism</strong> (đa hình) xuất hiện tự nhiên: dù <code>CookieRangCua</code> và <code>CookieTron</code> là hai class khác nhau, cả hai vẫn có thể được xử lý như thể chúng đều là "một chiếc bánh quy" ở lớp cha chung. Chương trình gọi cùng một method, nhưng mỗi loại bánh tự biết cách thực thi method đó theo cách riêng của mình.</p>
+
+    <h2>Vậy câu trả lời đúng cho buổi phỏng vấn đó là gì?</h2>
+    <p>Nhìn lại, câu trả lời "class là khuôn mẫu để tạo object" của mình hôm đó không sai — nhưng nó chỉ đúng ở bề mặt, giống thuộc lòng định nghĩa trong sách mà chưa từng hình dung ra bản chất đứng sau nó.</p>
+
+    <p>Câu trả lời đầy đủ hơn nên là: class tồn tại để tách bạch rõ ràng giữa <em>cấu trúc dùng chung</em> (định nghĩa một lần trong khuôn — tức fields, methods, cách hành xử) và <em>trạng thái riêng biệt</em> (thuộc về từng object — tức giá trị thật của các fields đó). Nhờ sự tách bạch này, chương trình vừa tránh lặp lại code, vừa giữ được sự linh hoạt để mỗi object có một trạng thái sống động của riêng mình.</p>
+
+    <p>Nếu có một điều mình ước ai đó nói với mình sớm hơn, thì đó là: đừng vội hài lòng khi đã "thuộc" được cú pháp. Mỗi khi học một khái niệm mới trong lập trình, hãy tự hỏi ngược "tại sao nó cần tồn tại" — giống hệt câu hỏi khiến mình khựng lại hôm phỏng vấn đó. Phần lớn thời gian, câu trả lời cho "tại sao" mới là thứ giúp mình thực sự hiểu, chứ không phải việc thuộc làu định nghĩa.</p>
+
+    <p><em>Nếu bạn muốn đào sâu hơn về class design, static/instance members, encapsulation hay inheritance ở mức chi tiết kỹ thuật (đặc biệt nếu học Java), cuốn <strong>OCP Oracle Certified Professional Java SE Developer Study Guide</strong> có hẳn một chương riêng — "Class Design" — đi rất sâu vào từng quy tắc, đáng để đọc kỹ chứ không chỉ lướt qua.</em></p>
+
+    <hr>
+
+    <p>Còn bạn — có từng bị hỏi ngược một câu tưởng đơn giản, rồi nhận ra mình chỉ đang thuộc lòng chứ chưa thật sự hiểu không? Kể mình nghe ở phần bình luận bên dưới :)</p>
+
+    <!-- POST_BODY_END -->
+  </article>
+
+  <site-footer root-path="../"></site-footer>
+
+  <script src="../assets/js/site-config.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/comments.js?v=20260826"></script>
+</body>
+</html>

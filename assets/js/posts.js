@@ -1,5 +1,15 @@
 const BLOG_POSTS = [
   {
+    slug: "ban-co-that-su-hieu-class-khong",
+    title: "Bạn Có Thật Sự Hiểu Class Không?",
+    excerpt: "Câu hỏi tưởng dễ, hoá ra mình trả lời sai từ gốc, và nhận ra rằng mình chưa hiểu class trong lập trình là gì.",
+    categorySlug: "cong-nghe",
+    categoryName: "Công nghệ",
+    cover: "assets/img/posts/class-khuon-banh-cover.png",
+    date: "28 Th8",
+    readingTime: 13
+  },
+  {
     slug: "tam-quan-trong-cua-kali",
     title: "Kali Và Magie Quan Trọng Thế Nào? Bài Học Từ Lần Tôi Suýt Liệt Vì Tụt Kali",
     excerpt: "Có những buổi sáng, bạn không biết nó sẽ là buổi sáng cuối cùng bạn còn tự đứng dậy được. Mình đã trải qua một lần tụt kali máu nặng, và từ đó mình học được rất nhiều về vai trò của kali và magie trong cơ thể.",
