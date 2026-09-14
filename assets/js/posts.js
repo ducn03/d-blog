@@ -1,5 +1,15 @@
 const BLOG_POSTS = [
   {
+    slug: "network-co-ban",
+    title: "Network cơ bản",
+    excerpt: "Bài nhập môn networking về TCP và UDP, 3-way handshake, HTTP và HTTPS, DNS Resolution và hành trình của một URL.",
+    categorySlug: "cong-nghe",
+    categoryName: "Công nghệ",
+    cover: "assets/img/posts/network.png",
+    date: "14 Th9",
+    readingTime: 10
+  },
+  {
     slug: "ban-co-that-su-hieu-class-khong",
     title: "Bạn Có Thật Sự Hiểu Class Không?",
     excerpt: "Câu hỏi tưởng dễ, hoá ra mình trả lời sai từ gốc, và nhận ra rằng mình chưa hiểu class trong lập trình là gì.",

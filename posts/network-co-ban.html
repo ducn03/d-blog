@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network cơ bản — D-Insights</title>
+  <meta name="description" content="Bài nhập môn networking: TCP và UDP, 3-way handshake, HTTP và HTTPS, DNS Resolution và điều gì xảy ra khi bạn gõ URL vào trình duyệt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/post.css">
+</head>
+<body>
+
+  <site-header root-path="../"></site-header>
+
+  <section class="hero container">
+    <div class="hero__pill">
+      <a href="../category/cong-nghe.html" class="pill pill--cong-nghe">Công nghệ</a>
+    </div>
+    <h1 class="hero__title">Network cơ bản</h1>
+    <div class="hero__meta">
+      <span>Đức Nguyễn</span>
+      <span class="hero__meta-dot"></span>
+      <span>14 Tháng 9, 2026</span>
+      <span class="hero__meta-dot"></span>
+      <span>10 phút đọc</span>
+    </div>
+    <div class="hero__cover">
+      <img src="../assets/img/posts/network.png" alt="Minh hoạ các thiết bị kết nối trong một mạng máy tính">
+    </div>
+  </section>
+
+  <article class="post-body">
+    <!-- POST_BODY_START -->
+
+    <p>Networking là cách các thiết bị giao tiếp và trao đổi dữ liệu với nhau qua mạng. Trong bài này, mình sẽ đi chậm qua bốn khái niệm nền tảng: <strong>TCP và UDP</strong>, <strong>3-way handshake</strong>, <strong>HTTP và HTTPS</strong>, cùng <strong>DNS Resolution</strong>.</p>
+
+    <h2>1. TCP vs UDP</h2>
+
+    <p>TCP và UDP đều là <strong>giao thức vận chuyển</strong> (transport protocol), tức là cách dữ liệu được đóng gói và gửi đi ở tầng Transport trong mô hình OSI.</p>
+
+    <h3>TCP: gửi thư đảm bảo</h3>
+
+    <p>Hãy tưởng tượng TCP giống như gửi thư bảo đảm:</p>
+
+    <ul>
+      <li>Hai bên phải bắt tay thiết lập kết nối trước khi truyền dữ liệu.</li>
+      <li>Mỗi gói tin được đánh số thứ tự.</li>
+      <li>Bên nhận gửi xác nhận (ACK) khi đã nhận được dữ liệu.</li>
+      <li>Nếu gói tin bị mất, TCP tự động gửi lại.</li>
+      <li>Dữ liệu được sắp xếp lại đúng thứ tự trước khi đưa cho ứng dụng.</li>
+    </ul>
+
+    <p>Đổi lại, TCP chậm hơn và tốn overhead hơn vì phải bắt tay, xác nhận, theo dõi thứ tự và retransmit khi cần.</p>
+
+    <h3>UDP: gửi bưu thiếp thường</h3>
+
+    <p>UDP giống như gửi một tấm bưu thiếp:</p>
+
+    <ul>
+      <li>Không bắt tay trước, cứ đóng gói rồi gửi đi.</li>
+      <li>Không đảm bảo gói tin đến nơi.</li>
+      <li>Không đảm bảo các gói đến đúng thứ tự.</li>
+      <li>Không tự động gửi lại khi mất gói.</li>
+    </ul>
+
+    <p>Nhờ vậy, UDP nhanh và ít overhead hơn. UDP phù hợp với video call, game online hoặc DNS query, nơi tốc độ quan trọng hơn việc giữ lại từng gói tin. Trong một cuộc gọi video, bỏ qua một frame cũ thường tốt hơn là dừng hình để chờ frame đó gửi lại.</p>
+
+    <p>TCP thường được dùng cho HTTP/HTTPS, truyền file và email, tức những trường hợp dữ liệu cần chính xác đầy đủ.</p>
+
+    <h2>2. 3-way handshake</h2>
+
+    <p>Trước khi truyền dữ liệu, TCP cần thiết lập kết nối bằng quy trình gọi là <strong>3-way handshake</strong>. Có ba bước:</p>
+
+    <ol>
+      <li><strong>SYN:</strong> Client gửi yêu cầu kết nối tới server, kèm số thứ tự bắt đầu của mình.</li>
+      <li><strong>SYN-ACK:</strong> Server đồng ý, gửi số thứ tự của server và xác nhận đã nhận SYN từ client.</li>
+      <li><strong>ACK:</strong> Client xác nhận đã nhận phản hồi của server. Kết nối chính thức được thiết lập.</li>
+    </ol>
+
+    <p>Tại sao cần ba bước chứ không phải hai? Vì TCP là kết nối hai chiều. Cả client và server đều cần chắc chắn rằng bên kia có thể gửi và nhận dữ liệu.</p>
+
+    <p>Nếu chỉ có SYN rồi SYN-ACK, server vẫn chưa biết chắc client có thực sự nhận được phản hồi hay không. Gói SYN-ACK có thể đã bị mất trên đường về. Bước ACK thứ ba chính là lời xác nhận cuối cùng của client: “Tôi đã nhận được phản hồi, cả hai bên có thể bắt đầu liên lạc.”</p>
+
+    <figure>
+      <img src="../assets/img/posts/3-way-handshake.png" alt="Sơ đồ TCP 3-way handshake: client gửi SYN, server trả SYN-ACK, client gửi ACK">
+      <figcaption>TCP cần ba lượt trao đổi để cả client và server cùng xác nhận kết nối.</figcaption>
+    </figure>
+
+    <h2>3. HTTP vs HTTPS</h2>
+
+    <p><strong>HTTP</strong> truyền dữ liệu dưới dạng plain text, không mã hóa. Nếu ai đó nghe lén được đường truyền, họ có thể đọc nội dung request, trong đó có thể bao gồm thông tin nhạy cảm.</p>
+
+    <p><strong>HTTPS</strong> là HTTP kết hợp với TLS (Transport Layer Security). Trước khi HTTP request được gửi, hai bên thực hiện TLS handshake để tạo một kênh liên lạc được mã hóa.</p>
+
+    <h3>TLS handshake diễn ra như thế nào?</h3>
+
+    <ol>
+      <li>Client gửi <strong>Client Hello</strong>, thông báo các thuật toán mã hóa mà nó hỗ trợ.</li>
+      <li>Server trả về chứng chỉ số (certificate) để chứng minh danh tính và cho biết thuật toán được chọn.</li>
+      <li>Client kiểm tra chứng chỉ có hợp lệ không, thường dựa vào một Certificate Authority (CA) đáng tin cậy.</li>
+      <li>Hai bên trao đổi để tạo ra một khóa phiên dùng chung.</li>
+    </ol>
+
+    <p>Từ đó, dữ liệu HTTP được mã hóa bằng khóa phiên. HTTPS có thể chậm hơn một chút ở lần kết nối đầu vì phải thực hiện TCP handshake rồi TLS handshake. Tuy nhiên, sau khi kết nối được thiết lập, tốc độ truyền dữ liệu gần như không khác HTTP; session resume còn giúp giảm số bước ở những lần kết nối sau.</p>
+
+    <figure>
+      <img src="../assets/img/posts/HTTP-HTTPS.png" alt="Sơ đồ so sánh HTTP và HTTPS: HTTPS có thêm TLS handshake trước khi gửi HTTP request">
+      <figcaption>HTTPS có thêm bước TLS handshake để tạo kênh liên lạc được mã hóa.</figcaption>
+    </figure>
+
+    <h2>4. DNS Resolution</h2>
+
+    <p>DNS (Domain Name System) giống như danh bạ điện thoại của Internet. Nó chuyển tên miền dễ nhớ như <code>google.com</code> thành địa chỉ IP để máy tính biết cần kết nối tới đâu.</p>
+
+    <p>Khi bạn gõ một tên miền, quá trình tra cứu thường đi theo các bước:</p>
+
+    <ol>
+      <li><strong>Browser cache:</strong> Trình duyệt kiểm tra kết quả đã lưu gần đây.</li>
+      <li><strong>OS cache:</strong> Nếu trình duyệt không có, hệ điều hành kiểm tra DNS cache của nó.</li>
+      <li><strong>Resolver:</strong> Request được gửi tới DNS resolver, thường là DNS của ISP hoặc DNS công cộng như <code>8.8.8.8</code>.</li>
+      <li><strong>Root DNS server:</strong> Root không trả IP cuối cùng mà chỉ đường tới server quản lý phần đuôi như <code>.com</code> hoặc <code>.vn</code>.</li>
+      <li><strong>TLD server:</strong> Server của phần đuôi tiếp tục chỉ tới server quản lý domain cụ thể.</li>
+      <li><strong>Authoritative name server:</strong> Đây là nơi biết chính xác IP tương ứng với tên miền và trả kết quả cuối cùng.</li>
+    </ol>
+
+    <p>Kết quả sau đó được cache ở nhiều tầng để những lần tra cứu tiếp theo nhanh hơn. Khi đã có IP, trình duyệt mới bắt đầu kết nối tới server.</p>
+
+    <h2>Vậy điều gì xảy ra khi bạn gõ URL và nhấn Enter?</h2>
+
+    <p>Đây là câu hỏi gộp cả bốn khái niệm trên:</p>
+
+    <ol>
+      <li>DNS Resolution tìm địa chỉ IP của domain.</li>
+      <li>Client thực hiện TCP 3-way handshake tới IP đó.</li>
+      <li>Nếu là HTTPS, client và server thực hiện thêm TLS handshake.</li>
+      <li>Trình duyệt gửi HTTP request.</li>
+      <li>Server xử lý request và trả về HTML, CSS, JavaScript cùng các tài nguyên khác.</li>
+      <li>Trình duyệt tải, phân tích và render trang web trên màn hình.</li>
+    </ol>
+
+    <figure>
+      <img src="../assets/img/posts/DNS.jpg" alt="Sơ đồ hành trình từ trình duyệt qua DNS, TCP, TLS đến HTTP và render trang">
+      <figcaption>Luồng khái quát khi bạn gõ URL và nhấn Enter.</figcaption>
+    </figure>
+
+    <blockquote>
+      <p>Mỗi lần mở một trang web là nhiều lớp giao tiếp nối tiếp nhau: DNS tìm địa chỉ, TCP mở đường, TLS bảo vệ dữ liệu, HTTP trao đổi nội dung.</p>
+    </blockquote>
+
+    <h2>Câu hỏi tự kiểm tra</h2>
+
+    <p><strong>Tại sao TCP đáng tin cậy hơn UDP?</strong></p>
+    <p>Vì TCP có handshake, acknowledgment, retransmission và đảm bảo thứ tự dữ liệu. Đánh đổi là TCP chậm hơn và tốn thêm overhead.</p>
+
+    <p><strong>HTTP có phải lúc nào cũng nhanh hơn HTTPS không?</strong></p>
+    <p>Không. HTTPS có thêm chi phí handshake và mã hóa, nên lần kết nối đầu có thể chậm hơn một chút. Nhưng sau khi kết nối thiết lập xong, khác biệt tốc độ thường rất nhỏ và HTTPS an toàn hơn nhiều.</p>
+
+    <hr>
+
+    <p>Nắm được bốn khái niệm này là bạn đã có nền tảng để học tiếp về routing, firewall, load balancer, CDN và nhiều chủ đề network nâng cao hơn.</p>
+
+    <!-- POST_BODY_END -->
+  </article>
+
+  <site-footer root-path="../"></site-footer>
+
+  <script src="../assets/js/site-config.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/comments.js?v=20260826"></script>
+</body>
+</html>
